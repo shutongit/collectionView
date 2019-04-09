@@ -11,6 +11,9 @@
 #import "CustormViewController.h"
 #import "WaterFallViewController.h"
 
+#define kWidth [UIScreen mainScreen].bounds.size.width
+#define kHeight [UIScreen mainScreen].bounds.size.height
+
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView * tableView;
@@ -22,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self creatUI];
     [self loadData];
 }
@@ -84,7 +88,7 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height + 44, kWidth, kHeight - [UIApplication sharedApplication].statusBarFrame.size.height - 44) style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         [self.view addSubview:_tableView];
