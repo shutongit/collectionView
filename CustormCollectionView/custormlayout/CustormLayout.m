@@ -34,25 +34,14 @@
  计算页面
  */
 @property (nonatomic, assign) NSInteger pageNumber;
+/**
+ 下一组的页面从哪个页面开始计算
+ */
+@property (nonatomic, assign) NSInteger currentPage;
+
 @end
 
 @implementation CustormLayout
-
-/**
- 首先我们要知道自定义layout需要做哪些操作，和使用哪些api
- 自定义这玩意吧 在我看来就是按照自己想要的布局来设置点，不然直接用系统的就好了哦
- 当然了系统该有的东西我们还是要有的
- 
- //每次布局都会调用
- - (void)prepareLayout;
- //布局完成后设置contentSize
- - (CGSize)collectionViewContentSize;
- //返回每个item的属性
- - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath;
- //返回所有item属性
- - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
- 
- */
 
 - (void)prepareLayout
 {
@@ -91,29 +80,36 @@
     } else {
         self.lineSapcing = 0.f;
     }
-    
-    //总元素个数
-    int itemNumber = 0;
-    itemNumber = itemNumber + (int)[self.collectionView numberOfItemsInSection:0]; //这里只做了一组元素的内容，如果是多组目前还没想好怎么计算位置
-    //计算有多少页面 (self.row * self.line)这个是一页的item个数
-    self.pageNumber = (itemNumber - 1) / (self.row * self.line) + 1;
-    
-    //    计算所有布局
-    /*
-     这里创建布局属性的时候之所以不在layoutAttributesForElementsInRect方法中创建，而在prepareLayout方法中去创建，是因为，如果你是继承自CollectionViewLayout，每次滑动屏幕的时候，layoutAttributesForElementsInRect都会调用，它的调用是动一下调用一次，默认是N频繁（如果你是继承自流水布局CollectionViewFlowLayout不是这种情况，这里默认有些控制你不能频繁调用它，除非重写shouldInvalidateLayoutForBoundsChange：方法才会频繁调用，这里是有区别的）
-   
-     */
+
+    self.pageNumber = 0;
+    self.currentPage = 0;
+    int currentP = 0;//默认第1组
     NSMutableArray *tmpAttributes = [NSMutableArray new];
-    for (int j = 0; j < self.collectionView.numberOfSections; j ++)
+    for (int currentSection = 0; currentSection < self.collectionView.numberOfSections; currentSection ++)
     { //获取所有的组
-        NSInteger count = [self.collectionView numberOfItemsInSection:j];
-        for (NSInteger i = 0; i < count; i++) { //获取每组的item
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:j];
+        NSInteger count = [self.collectionView numberOfItemsInSection:currentSection];
+        
+        //计算总页码
+        int itemNumber = 0;//总元素个数
+        itemNumber = itemNumber + (int)[self.collectionView numberOfItemsInSection:currentSection];
+        int pageCount = 0; //当前组 有多少页数据
+        //计算有多少页面 (self.row * self.line)这个是一页的item个数
+        pageCount = (itemNumber - 1) / (self.row * self.line) + 1;
+        
+        if (currentSection > currentP) { //当进入下一组的时候需要更换当前页面的数据源，用来计算item从第几页开始布局
+            self.currentPage = self.pageNumber; //先获取到
+            currentP = currentSection; //更新组
+        }
+        self.pageNumber += pageCount; //获取总页码，用以计算collectionView的contentSize
+        
+        
+        for (NSInteger itemRow = 0; itemRow < count; itemRow++) { //获取每组的item
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:itemRow inSection:currentSection];
+            //重写布局方法 用以自定义布局
             [tmpAttributes addObject:[self layoutAttributesForItemAtIndexPath:indexPath]];
         }
     }
     self.attributArray = tmpAttributes;
-    
 }
 
 /**
@@ -124,13 +120,9 @@
  */
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect{
     
-    
     return self.attributArray;
 }
-- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
-{
-    return NO;
-}
+
 //返回每个item的属性
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -151,7 +143,8 @@
         m = indexPath.item / self.line;
     }
     n = indexPath.item % self.line;
-    frame.origin = CGPointMake(n * (self.itemSize.width + self.itemSpacing) + self.sectionInset.left + (indexPath.section + p) * self.collectionView.frame.size.width, m * self.itemSize.height + m * self.lineSapcing + self.sectionInset.top);
+    frame.origin = CGPointMake(n * (self.itemSize.width + self.itemSpacing) + self.sectionInset.left + (self.currentPage + p) * self.collectionView.frame.size.width,
+                               m * self.itemSize.height + m * self.lineSapcing + self.sectionInset.top);
     attribute.frame = frame;
     return attribute;
 }
@@ -160,6 +153,10 @@
 - (CGSize)collectionViewContentSize
 {
     return CGSizeMake(self.collectionView.bounds.size.width * self.pageNumber, self.collectionView.bounds.size.height);
+}
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
+{
+    return NO;
 }
 #pragma mark ************* lazy load *************
 - (NSMutableArray *)attributArray

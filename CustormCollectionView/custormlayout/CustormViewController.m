@@ -113,7 +113,6 @@ static CGFloat InteritemSpace = 10.f;
             if (indexPath == nil) {
                 return;
             }
-            
             //移动的方法
             [self.collectionView moveItemAtIndexPath:self.currentIndexPath toIndexPath:indexPath];//系统的移动方法
             [self custormMoveItemAtIndexPath:self.currentIndexPath toIndexPath:indexPath];//自己的数据源替换方法
@@ -147,6 +146,10 @@ static CGFloat InteritemSpace = 10.f;
 
 
 #pragma mark ************* collectionView data *************
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 3;
+}
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.dataSource.count;
@@ -177,7 +180,7 @@ static CGFloat InteritemSpace = 10.f;
  */
 - (void)loadData
 {
-    [self.dataSource addObjectsFromArray:@[@"数据0",@"数据1",@"数据2",@"数据3",@"数据4",@"数据5",@"数据6",@"数据7",@"数据8",@"数据9",@"数据10",@"数据11",@"数据12",@"数据13",@"数据14",@"数据15",@"数据16",@"数据17",@"数据18",@"数据19",@"数据20",@"数据21",@"数据22",@"数据23",@"数据24",@"数据25",@"数据26",@"数据27",@"数据28",@"数据29",@"数据30",@"数据0",@"数据1",@"数据2",@"数据3",@"数据4",@"数据5",@"数据6",@"数据7",@"数据8",@"数据9",@"数据10",@"数据11",@"数据12",@"数据13",@"数据14",@"数据15",@"数据16",@"数据17",@"数据18",@"数据19",@"数据20",@"数据21",@"数据22",@"数据23",@"数据24",@"数据25",@"数据26",@"数据27",@"数据28",@"数据29",@"数据30"]];
+    [self.dataSource addObjectsFromArray:@[@"数据0",@"数据1",@"数据2",@"数据3",@"数据4",@"数据5",@"数据6",@"数据7",@"数据8",@"数据9",@"数据10",@"数据11",@"数据12",@"数据13",@"数据14",@"数据15",@"数据16",@"数据17",@"数据18",@"数据19",@"数据20",@"数据21",@"数据22",@"数据23",@"数据24",@"数据25",@"数据26",@"数据27",@"数据28",@"数据29",@"数据30"]];
     [self.collectionView reloadData];
 }
 
