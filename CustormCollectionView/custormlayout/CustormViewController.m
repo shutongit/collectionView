@@ -170,9 +170,7 @@ static CGFloat InteritemSpace = 10.f;
  */
 - (void)custormMoveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath
 {
-    id content = self.dataSource[indexPath.item];
-    [self.dataSource removeObjectAtIndex:indexPath.item];
-    [self.dataSource insertObject:content atIndex:newIndexPath.item];
+
 }
 
 /**

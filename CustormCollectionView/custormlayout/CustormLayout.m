@@ -88,7 +88,6 @@
     for (int currentSection = 0; currentSection < self.collectionView.numberOfSections; currentSection ++)
     { //获取所有的组
         NSInteger count = [self.collectionView numberOfItemsInSection:currentSection];
-        
         //计算总页码
         int itemNumber = 0;//总元素个数
         itemNumber = itemNumber + (int)[self.collectionView numberOfItemsInSection:currentSection];
