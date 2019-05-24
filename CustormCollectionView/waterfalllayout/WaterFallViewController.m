@@ -9,6 +9,7 @@
 #import "WaterFallViewController.h"
 #import "CollectionViewCell.h"
 #import "WaterFallLayout.h"
+#import "CollectionHeadReusableView.h"
 
 @interface WaterFallViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,WaterFallLayoutDelegate>
 /**
@@ -41,6 +42,10 @@
 }
 
 #pragma mark ************* collectionView data *************
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 2;
+}
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.dataSource.count;
@@ -49,8 +54,26 @@
 {
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionViewCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
-    cell.titleLabel.text = self.dataSource[indexPath.item];
+    cell.titleLabel.text = [NSString stringWithFormat:@"第%d组%@",indexPath.section,self.dataSource[indexPath.item]];
     return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(self.view.frame.size.width, 50);
+}
+- (CGSize)waterfallLayout:(WaterFallLayout *)layout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(self.view.frame.size.width, 50);;
+}
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    if (kind == UICollectionElementKindSectionHeader) {
+        CollectionHeadReusableView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"CollectionHeadReusableView" forIndexPath:indexPath];
+        
+        return headView;
+    }
+    return nil;
 }
 #pragma mark ************* WaterFallLayoutDelegate *************
 - (CGFloat)waterfallLayout:(WaterFallLayout *)layout indexPath:(NSIndexPath *)indexPath itemWidth:(CGFloat)itemWidth
@@ -74,6 +97,8 @@
 - (void)createUI
 {
     [self.collectionView registerNib:[UINib nibWithNibName:@"CollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionViewCell"];
+    
+    [self.collectionView registerNib:[UINib nibWithNibName:@"CollectionHeadReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CollectionHeadReusableView"];
     
 }
 

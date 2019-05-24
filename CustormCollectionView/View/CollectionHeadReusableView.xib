@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR">
+            <rect key="frame" x="0.0" y="0.0" width="371" height="99"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="combinatorial-analysis" translatesAutoresizingMaskIntoConstraints="NO" id="Giw-gA-N4J">
+                    <rect key="frame" x="15" y="39.5" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="1QA-wM-umQ"/>
+                        <constraint firstAttribute="height" constant="30" id="KXq-y9-vgw"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是头视图" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrr-HB-GLr">
+                    <rect key="frame" x="55" y="5" width="306" height="89"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.7675307978779462" green="1" blue="0.29654098974731136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Giw-gA-N4J" firstAttribute="leading" secondItem="9Gg-ye-v9C" secondAttribute="leading" constant="15" id="EE4-24-y5c"/>
+                <constraint firstAttribute="bottom" secondItem="Qrr-HB-GLr" secondAttribute="bottom" constant="5" id="HB4-uA-sOx"/>
+                <constraint firstItem="Qrr-HB-GLr" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="5" id="TUD-WZ-BPM"/>
+                <constraint firstItem="9Gg-ye-v9C" firstAttribute="trailing" secondItem="Qrr-HB-GLr" secondAttribute="trailing" constant="10" id="dUr-mz-SVu"/>
+                <constraint firstItem="Qrr-HB-GLr" firstAttribute="leading" secondItem="Giw-gA-N4J" secondAttribute="trailing" constant="10" id="fnR-uU-OY6"/>
+                <constraint firstItem="Giw-gA-N4J" firstAttribute="centerY" secondItem="9Gg-ye-v9C" secondAttribute="centerY" id="id4-i9-l2G"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="9Gg-ye-v9C"/>
+            <point key="canvasLocation" x="84.782608695652186" y="51.227678571428569"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="combinatorial-analysis" width="64" height="62"/>
+    </resources>
+</document>

@@ -20,6 +20,8 @@
 		50002BA5225C38D3003AA5B7 /* CustormLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 50002BA4225C38D3003AA5B7 /* CustormLayout.m */; };
 		50002BA9225C79CF003AA5B7 /* WaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 50002BA8225C79CF003AA5B7 /* WaterFallLayout.m */; };
 		50002BAC225C8727003AA5B7 /* WaterFallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50002BAB225C8727003AA5B7 /* WaterFallViewController.m */; };
+		50B32AAC22817B2300809AA6 /* CollectionHeadReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B32AAA22817B2300809AA6 /* CollectionHeadReusableView.m */; };
+		50B32AAD22817B2300809AA6 /* CollectionHeadReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50B32AAB22817B2300809AA6 /* CollectionHeadReusableView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,9 @@
 		50002BA8225C79CF003AA5B7 /* WaterFallLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterFallLayout.m; sourceTree = "<group>"; };
 		50002BAA225C8727003AA5B7 /* WaterFallViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaterFallViewController.h; sourceTree = "<group>"; };
 		50002BAB225C8727003AA5B7 /* WaterFallViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaterFallViewController.m; sourceTree = "<group>"; };
+		50B32AA922817B2300809AA6 /* CollectionHeadReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionHeadReusableView.h; sourceTree = "<group>"; };
+		50B32AAA22817B2300809AA6 /* CollectionHeadReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionHeadReusableView.m; sourceTree = "<group>"; };
+		50B32AAB22817B2300809AA6 /* CollectionHeadReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionHeadReusableView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +126,9 @@
 				50002B9A225C2DFD003AA5B7 /* CollectionViewCell.h */,
 				50002B9B225C2DFD003AA5B7 /* CollectionViewCell.m */,
 				50002B9C225C2DFD003AA5B7 /* CollectionViewCell.xib */,
+				50B32AA922817B2300809AA6 /* CollectionHeadReusableView.h */,
+				50B32AAA22817B2300809AA6 /* CollectionHeadReusableView.m */,
+				50B32AAB22817B2300809AA6 /* CollectionHeadReusableView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,6 +203,7 @@
 			files = (
 				50002B8C225C28D2003AA5B7 /* LaunchScreen.storyboard in Resources */,
 				50002B89225C28D2003AA5B7 /* Assets.xcassets in Resources */,
+				50B32AAD22817B2300809AA6 /* CollectionHeadReusableView.xib in Resources */,
 				50002B9E225C2DFD003AA5B7 /* CollectionViewCell.xib in Resources */,
 				50002B87225C28D0003AA5B7 /* Main.storyboard in Resources */,
 			);
@@ -212,6 +221,7 @@
 				50002B99225C2B90003AA5B7 /* SystemViewController.m in Sources */,
 				50002BA5225C38D3003AA5B7 /* CustormLayout.m in Sources */,
 				50002BAC225C8727003AA5B7 /* WaterFallViewController.m in Sources */,
+				50B32AAC22817B2300809AA6 /* CollectionHeadReusableView.m in Sources */,
 				50002BA9225C79CF003AA5B7 /* WaterFallLayout.m in Sources */,
 				50002B8F225C28D2003AA5B7 /* main.m in Sources */,
 				50002BA1225C3827003AA5B7 /* CustormViewController.m in Sources */,

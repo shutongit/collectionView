@@ -53,6 +53,20 @@ NS_ASSUME_NONNULL_BEGIN
  @return return value description
  */
 - (NSInteger)waterfallColumnWithLayout:(WaterFallLayout *)layout;
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+//{
+//    return CGSizeMake(self.view.frame.size.width, 50);
+//}
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+/**
+ 设置头视图的尺寸
+
+ @param layout layout description
+ @param section section description
+ @return return value description
+ */
+- (CGSize)waterfallLayout:(WaterFallLayout *)layout referenceSizeForHeaderInSection:(NSInteger)section;
+
 //
 @end
 
